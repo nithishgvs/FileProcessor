@@ -1,5 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Collections;
@@ -41,8 +39,8 @@ public class ConcurrentFileProcessor {
     public void processFilesToInitiateFileMatching(final String wordsFilePath, final String inputFileToProcessMatches) throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(threadsCount);
 
-        try (RandomAccessFile raf = new RandomAccessFile(wordsFilePath, "r")) {
-            long fileSize = raf.length();
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(wordsFilePath, "r")) {
+            long fileSize = randomAccessFile.length();
             long chunkSize = fileSize / threadsCount;
 
             for (int i = 0; i < threadsCount; i++) {
@@ -76,13 +74,14 @@ public class ConcurrentFileProcessor {
     private void matchWordsInFile(final String inputFilePath) throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(threadsCount);
 
-        try (RandomAccessFile raf = new RandomAccessFile(inputFilePath, "r")) {
-            long fileSize = raf.length();
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(inputFilePath, "r")) {
+            long fileSize = randomAccessFile.length();
             long chunkSize = fileSize / threadsCount;
 
             for (int i = 0; i < threadsCount; i++) {
                 long startByte = i * chunkSize;
                 long endByte = (i == threadsCount - 1) ? fileSize : startByte + chunkSize;
+                //Thread starts executing the matching logic
                 executor.submit(new FileMatchingProcessor(inputFilePath, startByte, endByte, uniqueWords, reentrantLock, matchStringBuilder));
             }
 

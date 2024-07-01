@@ -26,8 +26,8 @@ public class FileChunkProcessor implements Runnable {
             long currentByte = startByte;
             while (currentByte < endByte) {
                 String line = randomAccessFile.readLine();
-                if (line != null) {
-                    concurrentSet.add(line); // Add line to concurrent set
+                if (line != null && !line.isBlank()) {
+                    concurrentSet.add(line); // Add word to concurrent set
                     currentByte = randomAccessFile.getFilePointer(); // Update current byte position
                 } else {
                     //Breaking if we reach the end of the file

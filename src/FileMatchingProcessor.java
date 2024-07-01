@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Set;
@@ -27,7 +26,7 @@ public class FileMatchingProcessor implements Runnable {
             // Seek to the start byte
             randomAccessFile.seek(startByte);
 
-            // Read and process lines until end byte is reached
+            // Read and process lines until end byte is reached by the thread
             long currentByte = startByte;
             while (currentByte < endByte) {
                 String line = randomAccessFile.readLine();
@@ -51,7 +50,6 @@ public class FileMatchingProcessor implements Runnable {
      */
     private void processLine(String line) {
         if (line.isEmpty()) {
-            System.out.println("Empty line encountered ");
             return;
         }
 
