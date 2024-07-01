@@ -60,8 +60,6 @@ public class ConcurrentFileProcessor {
         // Wait for all submitted tasks to finish executing
         executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
 
-        System.out.println("Total unique words: " + uniqueWords.size());
-
         // Proceed to match words in the second file
         matchWordsInFile(inputFileToProcessMatches);
     }
