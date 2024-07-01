@@ -60,7 +60,7 @@ public class FileMatchingProcessor implements Runnable {
 
         for (String word : words) {
             //Changing to lower case for my simplicity
-            if (uniqueWords.contains(line.toLowerCase())) {
+            if (uniqueWords.contains(word.toLowerCase())) {
                 //Obtaining lock to update matchStringBuilder
                 reentrantLock.lock();
                 try {
