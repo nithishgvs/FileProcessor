@@ -17,7 +17,7 @@ public class FileChunkProcessor implements Runnable {
         this.filePath = filePath;
     }
 
-    //Run method which reads the file from startByte to endByte and build the uniqueWords Set
+    //Run method which reads the file from startByte to endByte and builds the uniqueWords Set
     @Override
     public void run() {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(filePath, "r")) {

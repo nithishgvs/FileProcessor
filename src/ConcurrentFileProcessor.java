@@ -68,6 +68,8 @@ public class ConcurrentFileProcessor {
     /**
      * Matching logic triggered here
      *
+     * This reads the huge file splitting each line to words by space delimitter and matches words
+     *
      * @param inputFilePath
      */
     private void matchWordsInFile(final String inputFilePath) throws InterruptedException {

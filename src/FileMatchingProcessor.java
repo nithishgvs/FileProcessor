@@ -66,7 +66,7 @@ public class FileMatchingProcessor implements Runnable {
                 try {
                     matchStringBuilder.append("Match found for word: ").append(word).append("\n");
                 } finally {
-                    //Releasing lock
+                    //Releasing the lock
                     reentrantLock.unlock();
                 }
             }
