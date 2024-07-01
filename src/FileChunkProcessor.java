@@ -9,6 +9,7 @@ public class FileChunkProcessor implements Runnable {
     private Set<String> concurrentSet;
 
 
+    //Constructor
     public FileChunkProcessor(String filePath, long startByte, long endByte, Set<String> concurrentSet) {
         this.startByte = startByte;
         this.endByte = endByte;
@@ -16,6 +17,7 @@ public class FileChunkProcessor implements Runnable {
         this.filePath = filePath;
     }
 
+    //Run method which reads the file from startByte to endByte and build the uniqueWords Set
     @Override
     public void run() {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(filePath, "r")) {

@@ -11,6 +11,7 @@ public class FileMatchingProcessor implements Runnable {
     private ReentrantLock reentrantLock;
     private StringBuilder matchStringBuilder;
 
+    //Constructor initialization
     public FileMatchingProcessor(final String filePath, final long startByte, final long endByte, final Set<String> uniqueWords, final ReentrantLock reentrantLock, final StringBuilder matchStringBuilder) {
         this.filePath = filePath;
         this.startByte = startByte;
@@ -20,6 +21,7 @@ public class FileMatchingProcessor implements Runnable {
         this.matchStringBuilder = matchStringBuilder;
     }
 
+    //Run method which reads the file from startByte to endByte and finds the matches
     @Override
     public void run() {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(filePath, "r")) {
@@ -44,7 +46,7 @@ public class FileMatchingProcessor implements Runnable {
     }
 
     /**
-     * Processes lines to match
+     * Processes lines to match the words from the uniqueSet
      *
      * @param line
      */

@@ -46,6 +46,7 @@ public class ConcurrentFileProcessor {
             for (int i = 0; i < threadsCount; i++) {
                 long startByte = i * chunkSize;
                 long endByte = (i == threadsCount - 1) ? fileSize : startByte + chunkSize;
+                //Thread starts executing the unique logic
                 executor.submit(new FileChunkProcessor(wordsFilePath, startByte, endByte, uniqueWords));
             }
 
